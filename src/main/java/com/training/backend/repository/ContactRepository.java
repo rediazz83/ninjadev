@@ -9,5 +9,5 @@ import java.io.Serializable;
 @Repository
 public interface ContactRepository extends JpaRepository<ContactEntity, Serializable> {
 
-    ContactEntity findById(int id);
+    ContactEntity findById(long id);
 }

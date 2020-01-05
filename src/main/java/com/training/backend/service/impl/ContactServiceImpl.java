@@ -40,7 +40,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactModel findContactById(int id) {
+    public ContactModel findContactById(long id) {
         LOG.info("METHOD: findContactById | DATA: contactId " + id);
 
         ContactEntity entity = contactRepository.findById(id);
@@ -49,7 +49,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void removeContact(int id) {
+    public void removeContact(long id) {
         LOG.info("METHOD: removeContact | DATA: contactId " + id);
 
         ContactModel contactModel = findContactById(id);

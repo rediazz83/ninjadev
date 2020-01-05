@@ -59,14 +59,21 @@ public class ContactController {
 
     @GetMapping("show-contacts")
     public ModelAndView showContacts() {
+        LOG.info("METHOD: showContacts");
+
         ModelAndView modelAndView = new ModelAndView(CONTACTS_VIEW);
 
         modelAndView.addObject("allContacts", contactService.listAllContacts());
 
+        LOG.info("TEMPLATE: " + modelAndView.getViewName());
         return modelAndView;
     }
 
-    public ModelAndView removeContact(@RequestParam(name = "id", required = true) int id) {
-        return new ModelAndView();
+    @GetMapping("/remove-contact")
+    public ModelAndView removeContact(@RequestParam(name = "id", required = true) long id) {
+        LOG.info("METHOD: removeContact | DATA: idContact " + id);
+
+        contactService.removeContact(id);
+        return showContacts();
     }
 }
