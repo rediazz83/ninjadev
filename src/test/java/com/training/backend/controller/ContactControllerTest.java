@@ -26,42 +26,42 @@ public class ContactControllerTest {
 
     @Test
     public void shouldReturnModelToContactForm() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertNotNull("Should return a model and view object", result);
     }
 
     @Test
     public void shouldReturnContactView() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertEquals("Should return a view called 'contactForm'", "contactform", result.getViewName());
     }
 
     @Test
     public void shouldReturnContainsContactModelField() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertTrue("Should return contains contact model field", result.getModel().containsKey("contactModel"));
     }
 
     @Test
     public void shouldReturnContainsContactModelInitialized() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertNotNull("Should return contains contact model field initialized", result.getModel().get("contactModel"));
     }
 
     @Test
     public void shouldReturnContainsErrorField() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertTrue("Should return contains error field", result.getModel().containsKey("error"));
     }
 
     @Test
     public void shouldReturnContainsErrorFieldWithValue() {
-        ModelAndView result = contactController.showContactForm("");
+        ModelAndView result = contactController.showContactForm("", null);
 
         assertNotNull("Should return contains error field", result.getModel().get("error"));
     }
