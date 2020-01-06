@@ -43,17 +43,14 @@ public class ContactServiceImpl implements ContactService {
     public ContactModel findContactById(long id) {
         LOG.info("METHOD: findContactById | DATA: contactId " + id);
 
-        ContactEntity entity = contactRepository.findById(id);
-        ContactModel model = contactConverter.convertEntityToModel(entity);
-        return model;
+        return contactConverter.convertEntityToModel(contactRepository.findById(id));
     }
 
     @Override
     public void removeContact(long id) {
         LOG.info("METHOD: removeContact | DATA: contactId " + id);
 
-        ContactModel contactModel = findContactById(id);
-        ContactEntity entity = contactConverter.convertModelToEntity(contactModel);
+        ContactEntity entity = contactConverter.convertModelToEntity(findContactById(id));
         contactRepository.delete(entity);
     }
 }

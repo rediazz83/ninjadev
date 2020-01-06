@@ -23,7 +23,7 @@ public class ContactController {
     private static final Log LOG = LogFactory.getLog(ContactController.class);
     private final static String CONTACT_FORM_VIEW = "contactform";
 
-    @GetMapping("/contact-form")
+    /*@GetMapping("/contact-form")
     public ModelAndView showContactForm(@RequestParam(name = "error", required = false) String error) {
         LOG.info("METHOD: showContactForm");
 
@@ -36,6 +36,32 @@ public class ContactController {
                 + ", contactModel " + modelAndView.getModel().get("contactModel").toString());
 
         return modelAndView;
+    }*/
+
+    @GetMapping("/contact-form")
+    public ModelAndView showContactForm(@RequestParam(name = "error", required = false) String error,
+                                        @RequestParam(name = "id", required = false) Long id) {
+        LOG.info("METHOD: showContactForm | DATA: idContact " + id);
+
+        ModelAndView modelAndView = new ModelAndView(CONTACT_FORM_VIEW);
+        ContactModel contactModel =  new ContactModel();
+
+        if(isaRequestForModification(id)) {
+            contactModel = contactService.findContactById(id);
+        }
+
+        modelAndView.addObject("contactModel", contactModel);
+        modelAndView.addObject("error", error);
+
+        LOG.info("TEMPLATE: " + CONTACT_FORM_VIEW + " | DATA: error "
+                +  modelAndView.getModel().get("error")
+                + ", contactModel " + modelAndView.getModel().get("contactModel").toString());
+
+        return modelAndView;
+    }
+
+    private boolean isaRequestForModification(@RequestParam(name = "id", required = false) Long id) {
+        return id != null;
     }
 
     @GetMapping("/cancel")
